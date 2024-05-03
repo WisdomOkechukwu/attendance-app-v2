@@ -11,10 +11,11 @@ class AnalyticsController extends Controller
 {
     public function metrics()
     {
-        $inspiration = DashboardRoute::inspiration();
-        $data['inspiration'] = $inspiration[array_rand($inspiration)];
+        // $inspiration = DashboardRoute::inspiration();
+        // $data['inspiration'] = $inspiration[array_rand($inspiration)];
 
 
-        return view('admin.metrics',$data);
+        // return view('admin.metrics',$data);
+        return view('zapp');
     }
 }
