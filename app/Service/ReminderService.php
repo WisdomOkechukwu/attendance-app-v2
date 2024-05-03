@@ -12,17 +12,17 @@ class ReminderService
         //
     }
 
-    public function sms_reminder()
+    public function sms_reminder($phone)
     {
 
     }
 
-    public function mail_reminder()
+    public function mail_reminder($email)
     {
 
     }
 
-    public function whatsapp_reminder()
+    public function whatsapp_reminder($phone)
     {
 
     }

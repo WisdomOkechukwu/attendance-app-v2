@@ -2,8 +2,7 @@
 
 use App\Models\BranchLocation;
 use App\Models\BranchState;
-use App\Models\CallCategory;
-use App\Models\User;
+use App\Models\Location;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,15 +14,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_call_logs', function (Blueprint $table) {
+        Schema::create('location_logs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(User::class)->nullable();
-            $table->boolean('is_called')->default(0)->nullable();
-            $table->string('type')->nullable();
-            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(Location::class);
+            $table->string('name');
+            $table->integer('total');
             $table->foreignIdFor(BranchState::class);
-            $table->foreignIdFor(User::class,'follow_up_id')->nullable();
+            $table->foreignIdFor(BranchLocation::class);
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_call_logs');
+        Schema::dropIfExists('location_logs');
     }
 };

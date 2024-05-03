@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Models\LocationLog;
 use App\Models\MemberCallLog;
 use App\Models\OutreachMembershipLog;
 use App\Models\ServiceDays;
@@ -18,16 +19,23 @@ class AnalyticsService
     private $total_absent;
     private $total_seats;
     private $last_service;
+    private $start_date;
+    private $end_date;
 
-    public function __construct($service_day = null)
+    public function __construct($service_day = null, $start_date = null, $end_date = null)
     {
+        $this->start_date = $start_date ?? now()->startOfMonth();
+        $this->end_date = $end_date ?? now();
+
         // Retrieve data from ServiceDays table with optional filtering by service_day
         $this->data = ServiceDays::when($service_day, function ($query, $service_day) {
             return $query->where('service_day', $service_day);
-        })->get();
+        })
+            ->whereBetween('service_date', [$this->start_date, $this->end_date])
+            ->get();
 
         // Get the last service day record from the retrieved data
-        $this->last_service = $this->data->last() ? Carbon::parse($this->data->last()) : now();
+        $this->last_service = ServiceDays::orderBy('id', 'DESC')->first();
 
         // Calculate total number of present, absent, and available seats across all service days
         $this->total_present = $this->data->sum('no_present');
@@ -36,39 +44,55 @@ class AnalyticsService
     }
 
     /**
+     * Calculate the total attendance in previous service based on the retrieved data.
+     *
+     * @return float
+     */
+
+    public function total_attendance_previous_service(): float
+    {
+        return $this->last_service->no_present ?? 0;
+    }
+
+    /**
+     * Calculate the total attendance based on the retrieved data.
+     *
+     * @return float
+     */
+
+    public function total_attendance_this_month(): float
+    {
+        return $this->total_present;
+    }
+
+    /**
      * Calculate the average attendance based on the retrieved data.
      *
-     * @return object
+     * @return float
      */
-    public function average_attendance(): object
+    public function average_attendance(): float
     {
-        return (object) [
-            'average_attendance' => $this->data->avg('no_present'),
-        ];
+        return $this->data->avg('no_present');
     }
 
     /**
      * Calculate the percentage of present attendees to available seats.
      *
-     * @return object
+     * @return float
      */
-    public function present_to_seats_percentage(): object
+    public function present_to_seats_percentage(): float
     {
-        return (object) [
-            'present_to_seats_percentage' => ($this->total_present / $this->total_seats) * 100,
-        ];
+        return ($this->total_present / $this->total_seats) * 100;
     }
 
     /**
      * Calculate the percentage of present attendees to absent attendees.
      *
-     * @return object
+     * @return float
      */
-    public function present_to_absent_percentage(): object
+    public function present_to_absent_percentage(): float
     {
-        return (object) [
-            'present_to_absent_percentage' => ($this->total_present / ($this->total_absent + $this->total_present)) * 100,
-        ];
+        return ($this->total_present / ($this->total_absent + $this->total_present)) * 100;
     }
 
     /**
@@ -85,12 +109,6 @@ class AnalyticsService
     }
 
     /**
-     * Count the total number of records in the OutreachMembershipLog table.
-     *
-     * @return int
-     */
-
-    /**
      * Calculate the percentage of missed church sessions within a given time frame and call status.
      *
      * @param string $start
@@ -101,6 +119,7 @@ class AnalyticsService
     public function missed_church_statistics(string $start, string $end, int $is_called): float
     {
         $missed_church = MemberCallLog::select('is_called', 'created_at')
+            ->where('type', 'missed_church')
             ->whereBetween('created_at', [$start, $end])
             ->get();
 
@@ -172,19 +191,24 @@ class AnalyticsService
      */
     public function members_per_location(): \Illuminate\Database\Eloquent\Collection
     {
-        return User::selectRaw('location, COUNT(*) as count')->groupBy('location')->get();
-        //!for this create a location log
+        return LocationLog::all();
     }
 
-    public function establishment_rate()
+    public function establishment_rate(): float
     {
-        //! checking when the member joined the workforce
-        //? HOW - by checking the discipleship_at is not null
+        $establishment_rate = User::select('id', 'service_unit_joined_at')
+            ->whereBetween('discipleship_class_joined_at', [$this->start_date, $this->end_date])
+            ->get();
+
+        return ($establishment_rate->where('service_unit_joined_at', '!=', null)->count() / $establishment_rate->count()) * 100;
     }
 
     public function conversion_rate()
     {
-        //! checking when the member joined the discipleship
-        //? HOW - by checking the service_unit_at is not null
+        $conversion_rate = User::select('id', 'discipleship_class_joined_at')
+            ->whereBetween('service_unit_joined_at', [$this->start_date, $this->end_date])
+            ->get();
+
+        return ($conversion_rate->where('discipleship_class_joined_at', '!=', null)->count() / $conversion_rate->count()) * 100;
     }
 }

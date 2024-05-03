@@ -30,9 +30,12 @@ return new class extends Migration
             $table->string('role')->default(1)->nullable();
             $table->timestamp('dob', 0)->nullable();
             $table->foreignIdFor(ServiceUnit::class)->nullable();
+            $table->timestamp('service_unit_joined_at', 0)->nullable();
             $table->foreignIdFor(DiscipleshipClass::class)->nullable();
+            $table->timestamp('discipleship_class_joined_at', 0)->nullable();
             $table->foreignIdFor(BranchState::class)->nullable();
             $table->foreignIdFor(BranchLocation::class)->nullable();
+            $table->timestamp('last_called_date', 0)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

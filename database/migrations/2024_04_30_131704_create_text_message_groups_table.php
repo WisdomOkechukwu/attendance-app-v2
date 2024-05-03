@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->nullable();
+            $table->string('status')->nullable();
             $table->foreignIdFor(BranchLocation::class);
             $table->foreignIdFor(BranchState::class);
         });
