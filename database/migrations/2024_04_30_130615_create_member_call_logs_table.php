@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BranchLocation;
+use App\Models\BranchState;
 use App\Models\CallCategory;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -18,6 +20,8 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignIdFor(User::class)->nullable();
             $table->boolean('is_called')->default(0)->nullable();
+            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(BranchState::class);
         });
     }
 

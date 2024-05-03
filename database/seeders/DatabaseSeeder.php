@@ -16,8 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DiscipleshipClassSeeder::class,
             ServiceUnitSeeder::class,
+            MemberClassSeeder::class
         ]);
 
-        User::factory(1000)->create();
+        // User::factory(1000)->create();
     }
 }

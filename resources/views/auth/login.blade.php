@@ -24,18 +24,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}"
-        class="template-customizer-core-css')}}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
-        class="template-customizer-theme-css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
-    <!-- Vendor -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
 
     <!-- Page CSS -->
     <!-- Page -->
@@ -118,8 +107,8 @@
                         <form class="mb-3" action="{{ route('auth.validate') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email or username" autofocus>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Enter your username" autofocus>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
@@ -151,21 +140,21 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script> --}}
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script> --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Main JS -->
@@ -175,21 +164,19 @@
     <!-- Page JS -->
     <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
     @if (session()->has('success'))
-    <script>
-        $(document).ready(function() {
+        <script>
+            $(document).ready(function() {
                 swal('Great', "{{ session()->get('success') }} ", 'success');
-                // Notify("{{ session()->get('success') }} ", null, null, 'success');
             });
-    </script>
+        </script>
     @endif
 
     @if (session()->has('error'))
-    <script>
-        $(document).ready(function() {
-                // Notify("{{ session()->get('error') }} ", null, null, 'danger');
+        <script>
+            $(document).ready(function() {
                 swal('Oops!!', "{{ session()->get('error') }} ", 'error');
             });
-    </script>
+        </script>
     @endif
 </body>
 

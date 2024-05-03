@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('outreach_logs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->longText('location')->nullable();
-            $table->integer('no_soul_won')->nullable();
-            $table->integer('no_coming')->nullable();
-            $table->timestamp('date')->nullable();
-        });
+        // Schema::create('outreach_logs', function (Blueprint $table) {
+        //     // $table->id();
+        //     // $table->timestamps();
+        //     // $table->foreignIdFor(OutreachLocation::class)->nullable();
+        //     // $table->integer('no_soul_won')->nullable();
+        //     // $table->integer('no_coming')->nullable();
+        //     // $table->timestamp('date')->nullable();
+        // });
     }
 
     /**

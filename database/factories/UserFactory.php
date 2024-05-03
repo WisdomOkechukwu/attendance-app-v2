@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DiscipleshipClassHistory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,20 +24,28 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'phone' => fake()->phoneNumber(),
-            'wa_phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
-            'location' => 'Port Harcourt',
-            'password' => Hash::make('password'),
-            'service_unit_id' => fake()->numberBetween(1, 7),
-            'discipleship_class_id' => fake()->numberBetween(1, 5),
-            'role' => 1,
-            'remember_token' => Str::random(10),
-        ];
+        return [];
+        // $data =  [
+        //     'name' => fake()->name(),
+        //     'email' => fake()->unique()->safeEmail(),
+        //     'email_verified_at' => now(),
+        //     'phone' => fake()->phoneNumber(),
+        //     'wa_phone' => fake()->phoneNumber(),
+        //     'address' => fake()->address(),
+        //     'location' => 'Port Harcourt',
+        //     'password' => Hash::make('password'),
+        //     'service_unit_id' => fake()->numberBetween(1, 7),
+        //     'discipleship_class_id' => fake()->numberBetween(1, 5),
+        //     'role' => 1,
+        //     'remember_token' => Str::random(10),
+        // ];
+
+        // $discipleshipLog = new DiscipleshipClassHistory();
+        // $discipleshipLog->discipleship_class_id = $data['discipleship_class_id'];
+        // $discipleshipLog->user_id = $user->id;
+        // $discipleshipLog->save();
+
+        // return $data;
     }
 
     /**

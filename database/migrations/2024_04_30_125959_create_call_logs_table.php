@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BranchLocation;
+use App\Models\BranchState;
 use App\Models\CallCategory;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -21,6 +23,8 @@ return new class extends Migration
             $table->longText('call_response')->nullable();
             $table->foreignIdFor(User::class,'follow_up_id')->nullable();
             $table->integer('call_duration')->nullable();
+            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(BranchState::class);
         });
     }
 

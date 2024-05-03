@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BranchLocation;
+use App\Models\BranchState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(BranchState::class);
         });
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BranchLocation;
+use App\Models\BranchState;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,6 +20,8 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->boolean('is_present')->nullable();
             $table->timestamp('service_date', 0)->nullable();
+            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(BranchState::class);
         });
     }
 

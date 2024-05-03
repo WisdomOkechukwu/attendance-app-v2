@@ -20,21 +20,21 @@
         rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" /> --}}
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css" class="template-customizer-core-css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css" class="template-customizer-core-css') }}" /> --}}
     <link rel="stylesheet"
         href="{{ asset('assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" /> --}}
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" /> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" /> --}}
     <!-- Vendor -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" /> --}}
 
     <!-- Page CSS -->
     <!-- Page -->
@@ -141,7 +141,7 @@
 Hey there! Welcome to our upgraded follow-up system! 🌟 If you spot any glitches while using this, just give a shout-out to the CHURCH ADMIN TEAM. We're here to make things smoother and better for you!
                     </p>
                     <p class="mb-0 fw-medium">READY, SET</p>
-                    <a href="{{ route('auth.login') }}" class="btn btn-primary d-grid w-100 mb-3">
+                    <a href="{{ route('login') }}" class="btn btn-primary d-grid w-100 mb-3">
                         LET'S GO !
                     </a>
                 </div>
@@ -151,7 +151,7 @@ Hey there! Welcome to our upgraded follow-up system! 🌟 If you spot any glitch
     </div>
 
 
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
@@ -162,19 +162,13 @@ Hey there! Welcome to our upgraded follow-up system! 🌟 If you spot any glitch
 
     <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('assets/vendor/libs/cleavejs/cleave.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
-
     <!-- Main JS -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script> --}}
 
 
     <!-- Page JS -->
-    <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
-    <script src="{{ asset('assets/js/pages-auth-two-steps.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/pages-auth.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/pages-auth-two-steps.js') }}"></script> --}}
 
 </body>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BranchLocation;
+use App\Models\BranchState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +21,9 @@ return new class extends Migration
             $table->integer('no_present')->nullable();
             $table->integer('no_absent')->nullable();
             $table->integer('no_seats')->nullable();
+            $table->integer('no_new_comers')->nullable();
+            $table->foreignIdFor(BranchLocation::class);
+            $table->foreignIdFor(BranchState::class);
         });
     }
 
